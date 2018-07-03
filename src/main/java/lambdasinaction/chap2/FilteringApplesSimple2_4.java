@@ -1,27 +1,35 @@
 package lambdasinaction.chap2;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 
 
 public class FilteringApplesSimple2_4 {
 	public static void main(String[] args) {
-		List<Apple> inventory = Arrays.asList(new Apple(80,"green"),
-											new Apple(155, "green"),
-											new Apple(120, "red"),
-											new Apple(100, "red"));	
+		List<Apple4> inventory = Arrays.asList(new Apple4(80,"green"),
+											new Apple4(155, "green"),
+											new Apple4(120, "red"),
+											new Apple4(100, "red"));	
 		
 		//정렬하기 
+		inventory.sort(new Comparator<Apple4>() {
+			public int compare(Apple4 a1, Apple4 a2) {
+				return a1.getWeight().compareTo(a2.getWeight());
+			}
+		});
+		
+		//inventory.sort((Apple4 a1, Apple4 a2) -> a1.getWeight().compareTo(a2.getWeight()));
+		
+		System.out.println("sort inventory" + inventory.toString());
 		
 	}
+
 	
-	
-	
-	public static class Apple {
+	public static class Apple4 {
         private int weight = 0;
         private String color = "";
 
-        public Apple(int weight, String color){
+        public Apple4(int weight, String color){
             this.weight = weight;
             this.color = color;
         }
